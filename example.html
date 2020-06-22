@@ -28,7 +28,7 @@ function postReq(p) {
       document.getElementById("title").innerHTML = "Data from " + p
     }
   };
-  var url = "https://httpbin.org/anything";
+  var url = p;
   xhttp.open("POST", url);
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.send(JSON.stringify({ "foo": "bar", "data": { "vin": "$VIN" } }));
@@ -40,16 +40,23 @@ function postReq(p) {
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Harman_International_logo.svg" width="100" height="150">
 
-<p>Harman Ignite Grafana Test for VIN:  $VIN</p>
+<p>Harman Ignite Grafana Test for VIN: $VIN</p>
+<hr>
 <br>
-<button onclick="loadDoc('https://httpbin.org/anything?VIN=$VIN')">Run external query</button>
+<button onclick="loadDoc('https://httpbin.org/anything?VIN=$VIN')">Run GET</button>
 <br>
-<button onclick="loadDoc('api/search?dashboardIds=112')">Run internal query</button>
+<button onclick="loadDoc('api/search?dashboardIds=112')">Run GET (internal)</button>
 <br>
-<button onclick="postReq('anything')">Run POST</button>
-<p id="title"></p>
-<p id="demo"></p>
+<button onclick="postReq('https://httpbin.org/anything')">Run POST</button>
 
+<br> Title:
+<p id="title">XXX</p>
+<br> Data:
+<p id="demo">XXX</p>
+
+<hr>
+<br>
+<h1> Iframe: </h1>
 <iframe src="https://en.wikipedia.org/wiki/Harman_International" title="An Iframe" width="600" height="400"></iframe>
 
 </body>
