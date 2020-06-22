@@ -6,13 +6,11 @@
 
 <script>
 
-function loadDoc(p) {
+function loadDoc(p, t) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
-      this.responseText;
-      document.getElementById("title").innerHTML = "Data from " + p
+      document.getElementById(t).innerHTML = this.responseText;
     }
   };
   xhttp.open("GET", p, true);
@@ -23,9 +21,7 @@ function postReq(p) {
   var xhttp = new XMLHttpRequest();   // new HttpRequest instance 
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
-      this.responseText;
-      document.getElementById("title").innerHTML = "Data from " + p
+      document.getElementById("demo").innerHTML = this.responseText;
     }
   };
   var url = p;
@@ -43,16 +39,20 @@ function postReq(p) {
 <p>Harman Ignite Grafana Test for VIN: $VIN</p>
 <hr>
 <br>
-<button onclick="loadDoc('https://httpbin.org/anything?VIN=$VIN')">Run GET</button>
+<button onclick="loadDoc('https://httpbin.org/anything?VIN=$VIN', 'demo')">Run GET</button>
 <br>
-<button onclick="loadDoc('api/search?dashboardIds=112')">Run GET (internal)</button>
+<button onclick="loadDoc('api/search?dashboardIds=112', 'demo')">Run GET (internal)</button>
 <br>
-<button onclick="postReq('https://httpbin.org/anything')">Run POST</button>
+<button onclick="postReq('https://httpbin.org/anything', 'demo')">Run POST</button>
 
-<br> Title:
-<p id="title">XXX</p>
+<br>
+<button onclick="loadDoc('home.html', 'home')">load html</button>
+
 <br> Data:
 <p id="demo">XXX</p>
+
+<br> Home:
+<p id="home">XXX</p>
 
 <hr>
 <br>
